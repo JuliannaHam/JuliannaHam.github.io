@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="gallerycss.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image:url(content/leaves.png);
+  height: 100vh;
+/* style="max-width:100%;height:auto; */
+}
+
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 10%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<header>
+  <header>
+
+
+
+    <nav class="fixed-top">
+
+    <p2><a href="./index.html">Julianna Ham</a></p2>
+
+      <a href="./gallery.html">portfolio</a>
+
+        <a href="./about.html">about/cv</a>
+
+          <a href="./contactme.html">contact me</a>
+          <!-- <a href="./hireme.html">hire me </a> -->
+
+      <a href="https://www.instagram.com/julianna_ham">instagram</a>
+
+
+          </nav>
+        </header>
+
+<div style="text-align:center">
+  <h2>Selection of recent artwork</h2>
+  <p1>This page is under construction, please check back soon for a more extensive portfolio sample. Click on the images to expand.</p1>
+</div>
+
+<!-- The four columns -->
+<div class="row">
+  <div class="column">
+    <img src="images/openstudios1.jpg" alt="Senior Installation at SVA Open Studios, March 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+
+  <div class="column">
+    <img src="images/openstudios2.jpg" alt="Senior Installation at SVA Open Studios, March 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+
+
+
+  <div class="column">
+    <img src="images/table1.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/table2.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/table3.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/pedestal.jpg" alt="CNC plasma-cut pedestal with rotating salt lamp, 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/starterpackimg.jpg" alt="Still Life: Starterpack, 2022. Featured on Do Not Research, 2022. Inkjet print on transparency film, Rockite cement, pink marble, glass found in Dead Horse Bay, found lightbox with auditory and moving parts, plasma cut welded steel, oil on linen, oil on canvas, 3D rendering, found photographs " style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/antimg.jpg" alt="Thief, 2022. CNC-routed plywood, plaster, steel dust, steel wool, polished steel, found glass from Dead Horse Bay, video, hand-made ant costume" style="width:100%" onclick="myFunction(this);">
+  </div>
+
+
+
+  <div class="column">
+    <img src="images/scavenger.jpg" alt="Scavenger, 2022. Oil on linen mounted on wooden frame." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/cullen.jpg" alt="Oil painting study, 2020." style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="images/salt.jpg" alt="Work, 2017." style="width:100%" onclick="myFunction(this);">
+  </div>
+
+  <div class="column">
+    <img src="images/espr.jpg" alt="Installation view at Extra Strength Pain Relief at 520 W 26th St, 2022." style="width:100%" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="column">
+  <img src="images/constellations.jpg" alt="Installation view at Constellations at the SVA Gallery, 2019." style="width:100%" onclick="myFunction(this);">
+</div>
+
+<!-- <div class="column">
+  <img src="images/constellations.jpg" alt="Installation view at Constellations at the SVA Gallery, 2019." style="width:100%" onclick="myFunction(this);">
+</div> -->
+
+
+<div class="column">
+  <img src="images/1.jpg" alt="Installation view of Seeking Lavrentiya, a solo show inside a shipping container, 2017." style="width:100%" onclick="myFunction(this);">
+</div>
+</div>
+
+<div class="column">
+  <img src="images/2.jpg" alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017" style="width:100%" onclick="myFunction(this);">
+</div>
+</div>
+
+<div class="column">
+  <img src="images/4.jpg" alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017" style="width:100%" onclick="myFunction(this);">
+</div>
+</div>
+
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <img id="expandedImg" style="width:100%">
+  <div id="imgtext"></div>
+</div>
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+
+</body>
+</html>

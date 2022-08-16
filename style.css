@@ -1,0 +1,249 @@
+
+/* Hashtag = ID */
+/* Period = class  */
+
+/*
+
+div#julianna
+
+div.person
+
+
+ */
+
+ a:link {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ a:visited {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ a:hover {
+   text-decoration: underline;
+ }
+
+ a:active {
+   text-decoration: underline;
+ }
+
+ #container {
+   cursor   : none;
+}
+
+#cursor {
+  position  : absolute;
+  z-index   : 10000;
+  width     : 40px;
+  height    : 40px;
+  background: transparent url(content/plantguycur.gif) 0 0 no-repeat;
+}
+
+ .fixed-top {
+   font-size: 20px;
+   font-family: georgia, serif;
+   padding-left: 10px;
+   background-color: white;
+
+ }
+
+.change-this {
+  color: pink !important;
+}
+
+/* .col {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+
+} */
+
+/* We're overriding bootstrap generic style */
+
+/* TITLE FONT */
+p2 {
+font-size: 40px;
+  padding: 0px;
+  margin-right: 30px;
+background-color: white
+  border-radius: 0px;
+  color: pink;
+  font-family: serif;
+}
+
+/* SECONDARY HEADER */
+h2 {
+  font-size: 25px;
+    padding: 0px;
+    border-radius: 0px;
+    color: pink;
+    font-family: serif;
+}
+
+/* MAIN BODY FONT */
+p1 {
+
+font-size: 20px;
+
+font-family: georgia, serif;
+padding-left: 10px;
+padding-top: 200px;
+margin-top: 200px;
+margin-right: 90px;
+
+}
+
+/* BODY FONT HEADER  */
+p3 {
+font-size: 18px;
+font-family: georgia, serif;
+}
+
+
+/* SMALL TEXT BODY FONT */
+
+p4 {
+font-family: georgia, serif;
+font-size: 14px;
+}
+
+main {
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+
+}
+
+.navbar-header {
+  color: white;
+
+}
+
+.container-fluid {
+  background-color: white;
+  /* max-width: 5180px; */
+  height: 0px;
+  margin-left: : 300px;
+  margin-right: 200px;
+  padding-left: 40px;
+}
+
+/* height: 80px;
+margin-left: : 300px;
+margin-right: 200px;
+padding-left: 40px;
+} */
+
+
+a#home {
+  text-decoration: none;
+
+}
+a#home:hover {
+  text-decoration: underline;
+}
+
+#portfolio-title {
+  color: blue;
+}
+
+#carousel-slide {
+  max-width: 100%;
+  margin: 0;
+}
+
+.col {
+text-align: center;
+margin-left: 220px;
+margin-top: -40px;
+spacing
+}
+
+.col {
+font-family: Georgia,"Times New Roman",serif;
+font-size: 18px;
+}
+
+
+.col:hover {
+  cursor: pointer;
+  transform: scale(1.6);
+  transition: all 0.8s ease-in-out;
+}
+
+.row {
+
+}
+.bgleaves {
+  opacity: 0.5;
+  width: 900px;
+}
+.landing_page, .second_item {
+  width: 100%;
+  object-fit: contain;
+  /* height: 860px !important; */
+}
+
+.second_item {
+  position: relative;
+
+}
+
+/* .swag {
+  position: absolute;
+  top: 80%;
+  left: 40%;
+  z-index: 99999;
+  font-size: 50px;
+  transition: font-size 12s;
+} */
+
+.swag:hover {
+  font-size: 20px;
+}
+
+.rock {
+  width: 100px;
+}
+
+.glass {
+  width: 120px;
+}
+
+.meopen {
+  width: 500px;
+  margin-left: -80px;
+}
+
+
+
+.slider-ctn figure.logo {
+    margin: auto;
+    background-image: url('https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80vw;
+    height: 60vw;
+  border: 5px solid red;
+}
+
+.plantguy {
+    height: 30%;
+    width: 30%;
+    margin-top: 100px;
+    margin-left: 350px;
+    position: relative;
+}
+
+
+
+/* <!-- test for opacity scrolling --> */
+
+
+
+/* .gundam {
+  transform: rotate(90deg);
+} */
