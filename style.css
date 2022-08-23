@@ -184,7 +184,7 @@ font-size: 18px;
 .landing_page, .second_item {
   width: 100%;
   object-fit: contain;
-  /* height: 860px !important; */
+  height: 860px !important; 
 }
 
 .second_item {
