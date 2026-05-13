@@ -1,13 +1,8 @@
-/* galleryEDIT.css — gallery-specific overrides */
+/* galleryEDIT.css */
 
-/* Any additional gallery tweaks go here.
-   Core masonry + lightbox styles live in gallery.html <style> block. */
-
-/* Example: tighten grid gap on very large screens */
 @media (min-width: 1400px) {
   .masonry-grid {
-    column-count: 6;
-    column-gap: 12px;
+    gap: 12px;
     padding: 12px;
   }
 }
