@@ -7,22 +7,35 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-   body {
-  background-image:url(content/leaves.png);
-  height: 100vh;
-     
+    body {
+      background-image: url(content/leaves.png);
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
     }
 
     /* ── Masonry grid ── */
     .masonry-grid {
-      column-count: 5;
-      column-gap: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 10px;
       padding: 10px;
     }
 
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .col.feature {
+      flex: 1.6;
+    }
+
     .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 10px;
       overflow: hidden;
     }
 
@@ -37,6 +50,15 @@
     .masonry-item img:hover {
       opacity: 1;
       transform: scale(1.02);
+    }
+
+    @media (max-width: 800px) {
+      .masonry-grid { flex-wrap: wrap; }
+      .col, .col.feature { flex: 1 1 30%; }
+    }
+
+    @media (max-width: 500px) {
+      .col, .col.feature { flex: 1 1 45%; }
     }
 
     /* ── Lightbox overlay ── */
@@ -94,10 +116,6 @@
 
     #lightbox-close:hover { color: #ccc; }
 
-    /* ── Responsive ── */
-    @media (max-width: 1100px) { .masonry-grid { column-count: 4; } }
-    @media (max-width: 800px)  { .masonry-grid { column-count: 3; } }
-    @media (max-width: 500px)  { .masonry-grid { column-count: 2; } }
   </style>
 </head>
 <body>
@@ -119,106 +137,109 @@
   <!-- Masonry gallery -->
   <div class="masonry-grid">
 
-    <div class="masonry-item">
-      <img src="Images/Openstudios1.jpg"
-           alt="Senior Installation at SVA Open Studios, March 2022."
-           onclick="openLightbox(this)">
+    <!-- COL 1: Openstudios -->
+    <div class="col">
+      <div class="masonry-item">
+        <img src="Images/Openstudios1.jpg"
+             alt="Senior Installation at SVA Open Studios, March 2022."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/Openstudios2.jpg"
+             alt="Senior Installation at SVA Open Studios, March 2022."
+             onclick="openLightbox(this)">
+      </div>
     </div>
 
-    <div class="masonry-item">
-      <img src="Images/Openstudios2.jpg"
-           alt="Senior Installation at SVA Open Studios, March 2022."
-           onclick="openLightbox(this)">
+    <!-- COL 2: IBeRn, Pedestal -->
+    <div class="col">
+      <div class="masonry-item">
+        <img src="Images/IBeRn.jpg"
+             alt="I Be Rn, 2026. Steel, Bernie Sanders 2020 t-shirts, canvas"
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/Pedestal.jpg"
+             alt="CNC plasma-cut pedestal with rotating salt lamp, 2022."
+             onclick="openLightbox(this)">
+      </div>
     </div>
 
-    <div class="masonry-item">
-      <img src="Images/IBeRn.jpg"
-           alt="I Be Rn, 2026. Steel, Bernie Sanders 2020 t-shirts, canvas"
-           onclick="openLightbox(this)">
+    <!-- COL 3 (FEATURE — wider): starterpackimg, antimg, scavenger -->
+    <div class="col feature">
+      <div class="masonry-item">
+        <img src="Images/starterpackimg.jpg"
+             alt="Still Life: Starterpack, 2022. Featured on Do Not Research, 2022. Inkjet print on transparency film, Rockite cement, pink marble, glass found in Dead Horse Bay, found lightbox with auditory and moving parts, plasma cut welded steel, oil on linen, oil on canvas, 3D rendering, found photographs"
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/antimg.jpg"
+             alt="Thief, 2022. CNC-routed plywood, plaster, steel dust, steel wool, polished steel, found glass from Dead Horse Bay, video, hand-made ant costume"
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/scavenger.jpg"
+             alt="Scavenger, 2022. Oil on linen mounted on wooden frame."
+             onclick="openLightbox(this)">
+      </div>
     </div>
 
-    <div class="masonry-item">
-      <img src="Images/table1.jpg"
-           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
-           onclick="openLightbox(this)">
+    <!-- COL 4: table1, table2, table3 -->
+    <div class="col">
+      <div class="masonry-item">
+        <img src="Images/table1.jpg"
+             alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/table2.jpg"
+             alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/table3.jpg"
+             alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+             onclick="openLightbox(this)">
+      </div>
     </div>
 
-    <div class="masonry-item">
-      <img src="Images/table2.jpg"
-           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/Pedestal.jpg"
-           alt="CNC plasma-cut pedestal with rotating salt lamp, 2022."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/starterpackimg.jpg"
-           alt="Still Life: Starterpack, 2022. Featured on Do Not Research, 2022. Inkjet print on transparency film, Rockite cement, pink marble, glass found in Dead Horse Bay, found lightbox with auditory and moving parts, plasma cut welded steel, oil on linen, oil on canvas, 3D rendering, found photographs"
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/antimg.jpg"
-           alt="Thief, 2022. CNC-routed plywood, plaster, steel dust, steel wool, polished steel, found glass from Dead Horse Bay, video, hand-made ant costume"
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/scavenger.jpg"
-           alt="Scavenger, 2022. Oil on linen mounted on wooden frame."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/salt.jpg"
-           alt="Work, 2017."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/ESPR.jpg"
-           alt="Installation view at Extra Strength Pain Relief at 520 W 26th St, 2022."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/constellations.jpg"
-           alt="Installation view at Constellations at the SVA Gallery, 2019."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/1.jpg"
-           alt="Installation view of Seeking Lavrentiya, a solo show inside a shipping container, 2017."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/2.jpg"
-           alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/4.jpg"
-           alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/table3.jpg"
-           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
-           onclick="openLightbox(this)">
-    </div>
-
-    <div class="masonry-item">
-      <img src="Images/cullen.jpg"
-           alt="Oil painting study, 2020."
-           onclick="openLightbox(this)">
+    <!-- COL 5: remaining images -->
+    <div class="col">
+      <div class="masonry-item">
+        <img src="Images/ESPR.jpg"
+             alt="Installation view at Extra Strength Pain Relief at 520 W 26th St, 2022."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/constellations.jpg"
+             alt="Installation view at Constellations at the SVA Gallery, 2019."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/1.jpg"
+             alt="Installation view of Seeking Lavrentiya, a solo show inside a shipping container, 2017."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/2.jpg"
+             alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/4.jpg"
+             alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/salt.jpg"
+             alt="Work, 2017."
+             onclick="openLightbox(this)">
+      </div>
+      <div class="masonry-item">
+        <img src="Images/cullen.jpg"
+             alt="Oil painting study, 2020."
+             onclick="openLightbox(this)">
+      </div>
     </div>
 
   </div>
