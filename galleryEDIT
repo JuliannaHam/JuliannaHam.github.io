@@ -1,190 +1,262 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="galleryEDIT.css">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="galleryEDIT.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  background-image:url(content/leaves.png);
-  height: 100vh;
-/* style="max-width:100%;height:auto; */
-}
+    body {
+      background-image: url(content/leaves.png);
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
 
+    /* ── Masonry grid ── */
+    .masonry-grid {
+      column-count: 5;
+      column-gap: 10px;
+      padding: 10px;
+    }
 
-/* The grid: Four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 10%;
-  padding: 10px;
-}
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
 
-/* Style the images inside the grid */
-.column img {
-  opacity: 0.8;
-  cursor: pointer;
-}
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      opacity: 0.85;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
 
-.column img:hover {
-  opacity: 1;
-}
+    .masonry-item img:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    /* ── Lightbox overlay ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: pointer;
+    }
 
-/* The expanding image container */
-.container {
-  position: relative;
-  display: none;
-}
+    #lightbox.active {
+      display: flex;
+    }
 
-/* Expanding image text */
-#imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
-}
+    #lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      cursor: default;
+    }
 
-/* Closable button inside the expanded image */
-.closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: white;
-  font-size: 35px;
-  cursor: pointer;
-}
-</style>
+    #lightbox-inner img {
+      max-width: 90vw;
+      max-height: 80vh;
+      display: block;
+      object-fit: contain;
+    }
+
+    #lightbox-caption {
+      color: #fff;
+      font-size: 15px;
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: 90vw;
+      font-family: Georgia, serif;
+      font-style: italic;
+      text-align: left;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: -36px;
+      right: 0;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+
+    #lightbox-close:hover { color: #ccc; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) { .masonry-grid { column-count: 4; } }
+    @media (max-width: 800px)  { .masonry-grid { column-count: 3; } }
+    @media (max-width: 500px)  { .masonry-grid { column-count: 2; } }
+  </style>
 </head>
 <body>
-<header>
+
   <header>
-
-
-
     <nav class="fixed-top">
-
-    <p2><a href="./index.html">Julianna Ham</a></p2>
-
+      <p2><a href="./index.html">Julianna Ham</a></p2>
       <a href="./gallery.html">portfolio</a>
-
-        <a href="./about.html">about/cv</a>
-
-          <a href="./contactme.html">contact me</a>
-          <!-- <a href="./hireme.html">hire me </a> -->
-
+      <a href="./about.html">about/cv</a>
+      <a href="./contactme.html">contact me</a>
       <a href="https://www.instagram.com/julianna_ham">instagram</a>
+    </nav>
+  </header>
 
-
-          </nav>
-        </header>
-
-<div style="text-align:center">
-  <h2>Click on the images to expand.</h2>
- 
-</div>
-
-<!-- The four columns -->
-<div class="row">
-  <div class="column">
-<img src="Images/IBeRn.jpg" alt="I Be Rn, 2026. Steel, Bernie Sanders 2020 t-shirts, canvas" style="width:100%" onclick="myFunction(this);"> </div>
-
-   <div class="column">
-    <img src="Images/Openstudios1.jpg" alt="Senior Installation at SVA Open Studios, March 2022." style="width:100%" onclick="myFunction(this);">
-  </div>
-  
-  <div class="column">
-    <img src="Images/Openstudios2.jpg" alt="Senior Installation at SVA Open Studios, March 2022." style="width:100%" onclick="myFunction(this);">
+  <div style="text-align:center; padding: 80px 0 16px;">
+    <h2>Click on the images to expand.</h2>
   </div>
 
+  <!-- Masonry gallery -->
+  <div class="masonry-grid">
 
+    <div class="masonry-item">
+      <img src="Images/IBeRn.jpg"
+           alt="I Be Rn, 2026. Steel, Bernie Sanders 2020 t-shirts, canvas"
+           onclick="openLightbox(this)">
+    </div>
 
-  <div class="column">
-    <img src="Images/table1.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
+    <div class="masonry-item">
+      <img src="Images/Openstudios1.jpg"
+           alt="Senior Installation at SVA Open Studios, March 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/Openstudios2.jpg"
+           alt="Senior Installation at SVA Open Studios, March 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/table1.jpg"
+           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/table2.jpg"
+           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/table3.jpg"
+           alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/Pedestal.jpg"
+           alt="CNC plasma-cut pedestal with rotating salt lamp, 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/starterpackimg.jpg"
+           alt="Still Life: Starterpack, 2022. Featured on Do Not Research, 2022. Inkjet print on transparency film, Rockite cement, pink marble, glass found in Dead Horse Bay, found lightbox with auditory and moving parts, plasma cut welded steel, oil on linen, oil on canvas, 3D rendering, found photographs"
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/antimg.jpg"
+           alt="Thief, 2022. CNC-routed plywood, plaster, steel dust, steel wool, polished steel, found glass from Dead Horse Bay, video, hand-made ant costume"
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/scavenger.jpg"
+           alt="Scavenger, 2022. Oil on linen mounted on wooden frame."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/cullen.jpg"
+           alt="Oil painting study, 2020."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/salt.jpg"
+           alt="Work, 2017."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/ESPR.jpg"
+           alt="Installation view at Extra Strength Pain Relief at 520 W 26th St, 2022."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/constellations.jpg"
+           alt="Installation view at Constellations at the SVA Gallery, 2019."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/1.jpg"
+           alt="Installation view of Seeking Lavrentiya, a solo show inside a shipping container, 2017."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/2.jpg"
+           alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
+           onclick="openLightbox(this)">
+    </div>
+
+    <div class="masonry-item">
+      <img src="Images/4.jpg"
+           alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017."
+           onclick="openLightbox(this)">
+    </div>
+
   </div>
-  <div class="column">
-    <img src="Images/table2.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/table3.jpg" alt="TIG welded, CNC plasma cut coffee table with inset lightbox, 2022." style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/Pedestal.jpg" alt="CNC plasma-cut pedestal with rotating salt lamp, 2022." style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/starterpackimg.jpg" alt="Still Life: Starterpack, 2022. Featured on Do Not Research, 2022. Inkjet print on transparency film, Rockite cement, pink marble, glass found in Dead Horse Bay, found lightbox with auditory and moving parts, plasma cut welded steel, oil on linen, oil on canvas, 3D rendering, found photographs " style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/antimg.jpg" alt="Thief, 2022. CNC-routed plywood, plaster, steel dust, steel wool, polished steel, found glass from Dead Horse Bay, video, hand-made ant costume" style="width:100%" onclick="myFunction(this);">
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="closeLightbox(event)">
+    <div id="lightbox-inner">
+      <span id="lightbox-close" onclick="closeLightboxDirect()">&times;</span>
+      <img id="lightbox-img" src="" alt="">
+      <div id="lightbox-caption"></div>
+    </div>
   </div>
 
+  <script>
+    function openLightbox(img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-caption').textContent = img.alt;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
+    function closeLightbox(e) {
+      // close only if clicking the dark backdrop, not the image/caption
+      if (e.target === document.getElementById('lightbox')) {
+        closeLightboxDirect();
+      }
+    }
 
-  <div class="column">
-    <img src="Images/scavenger.jpg" alt="Scavenger, 2022. Oil on linen mounted on wooden frame." style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/cullen.jpg" alt="Oil painting study, 2020." style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="Images/salt.jpg" alt="Work, 2017." style="width:100%" onclick="myFunction(this);">
-  </div>
+    function closeLightboxDirect() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-  <div class="column">
-    <img src="Images/ESPR.jpg" alt="Installation view at Extra Strength Pain Relief at 520 W 26th St, 2022." style="width:100%" onclick="myFunction(this);">
-  </div>
-</div>
-
-<div class="column">
-  <img src="Images/constellations.jpg" alt="Installation view at Constellations at the SVA Gallery, 2019." style="width:100%" onclick="myFunction(this);">
-</div>
-
-<!-- <div class="column">
-  <img src="images/constellations.jpg" alt="Installation view at Constellations at the SVA Gallery, 2019." style="width:100%" onclick="myFunction(this);">
-</div> -->
-
-
-<div class="column">
-  <img src="Images/1.jpg" alt="Installation view of Seeking Lavrentiya, a solo show inside a shipping container, 2017." style="width:100%" onclick="myFunction(this);">
-</div>
-</div>
-
-<div class="column">
-  <img src="Images/2.jpg" alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017" style="width:100%" onclick="myFunction(this);">
-</div>
-</div>
-
-<div class="column">
-  <img src="Images/4.jpg" alt="Installation view of Everyday is a Lifetime, a solo show inside a shipping container, 2017" style="width:100%" onclick="myFunction(this);">
-</div>
-</div>
-
-
-<div class="container">
-  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-  <img id="expandedImg" style="width:100%">
-  <div id="imgtext"></div>
-</div>
-
-<script>
-function myFunction(imgs) {
-  var expandImg = document.getElementById("expandedImg");
-  var imgText = document.getElementById("imgtext");
-  expandImg.src = imgs.src;
-  imgText.innerHTML = imgs.alt;
-  expandImg.parentElement.style.display = "block";
-}
-</script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightboxDirect();
+    });
+  </script>
 
 </body>
 </html>
